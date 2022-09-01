@@ -34,7 +34,7 @@ pub struct Forecast {
 impl Forecast {
     pub async fn get( city: &String, country_code: &String ) -> Result<Self, ExitFailure> {
         let url: String = format!("https://api.openweathermap.org/data/2.5/weather?q={},{}&appid={}", city, country_code, crate::lib::types::hidden::WEATHER_API_KEY);
-        let url: Url = Url::parse(&*url)?; // ? propogarses the error
+        let url: Url = Url::parse(&*url)?; // ? propogates the error
 
         let resp = reqwest::get(url).await?.json::<Forecast>().await?;// ? propogarses the error
 
